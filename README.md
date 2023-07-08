@@ -6,7 +6,7 @@ Gympass Style app
 
 - [ ] Deve ser possível se cadastrar;
 - [ ] Deve ser possível se autenticar;
-- [ ] Deve ser possível obter os dados de um usuário logado;
+- [x] Deve ser possível obter os dados de um usuário logado;
 - [ ] Deve ser possível obter o número de check-ins realizados pelo usuário logado;
 - [ ] Deve ser possível o usuário obter seu histórico de check-ins;
 - [ ] Deve ser possível o usuário buscar academias próximas;
@@ -17,7 +17,7 @@ Gympass Style app
 
 ## RNs (Regras de negócio)
 
-- [ ] O usuário não deve poder se cadastrar comum e-mail duplicado;
+- [x] O usuário não deve poder se cadastrar comum e-mail duplicado;
 - [ ] O usuário não pode fazer 2 check-ins no mesmo dia;
 - [ ] O usuário não pode fazer check-in se não estiver perto(100m) da cademia;
 - [ ] O check-in só pode ser validado até 20 minutos após criado;
@@ -26,7 +26,7 @@ Gympass Style app
 
 ## RFNs (Requisitos não funcionais)
 
-- [ ] A senha do usuário deve ser criptografada;
+- [x] A senha do usuário deve ser criptografada;
 - [ ] Os dados da aplicação precisam estar persistidos em um banco de dados
 - [ ] Todas as listas de dados precisam estar paginadas com 20 itens por página;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
