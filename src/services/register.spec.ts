@@ -1,15 +1,20 @@
-import { expect, describe, it } from "vitest";
+import { expect, describe, it, beforeEach } from "vitest";
 import { RegisterService } from "./register";
 import { compare } from "bcryptjs";
 import { InMemoiryUseraRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error";
 
-describe("Register Service", () => {
-  it("should should be able to register", async () => {
-    const usersRepository = new InMemoiryUseraRepository();
-    const registerService = new RegisterService(usersRepository);
+let usersRepository: InMemoiryUseraRepository;
+let sut: RegisterService;
 
-    const { user } = await registerService.execute({
+describe("Register Service", () => {
+  beforeEach(() => {
+    usersRepository = new InMemoiryUseraRepository();
+    sut = new RegisterService(usersRepository);
+  });
+
+  it("should should be able to register", async () => {
+    const { user } = await sut.execute({
       name: "John Doe",
       email: "johndoe@example.com",
       password: "123456",
@@ -19,10 +24,7 @@ describe("Register Service", () => {
   });
 
   it("should hash user password upon registration", async () => {
-    const usersRepository = new InMemoiryUseraRepository();
-    const registerService = new RegisterService(usersRepository);
-
-    const { user } = await registerService.execute({
+    const { user } = await sut.execute({
       name: "John Doe",
       email: "johndoe@example.com",
       password: "123456",
@@ -37,19 +39,16 @@ describe("Register Service", () => {
   });
 
   it("should not be able to regisster with same email twice", async () => {
-    const usersRepository = new InMemoiryUseraRepository();
-    const registerService = new RegisterService(usersRepository);
-
     const email = "johndoe@example.com";
 
-    await registerService.execute({
+    await sut.execute({
       name: "John Doe",
       email,
       password: "123456",
     });
 
     await expect(() =>
-      registerService.execute({
+      sut.execute({
         name: "John Doe",
         email,
         password: "123456",
