@@ -1,15 +1,15 @@
 import { expect, describe, it, beforeEach } from "vitest";
 import { hash } from "bcryptjs";
-import { InMemoiryUseraRepository } from "@/repositories/in-memory/in-memory-users-repository";
+import { InMemoryUserRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { AuthenticateService } from "./authenticate";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";
 
-let usersRepository: InMemoiryUseraRepository;
+let usersRepository: InMemoryUserRepository;
 let sut: AuthenticateService;
 
 describe("Authenticate Service", () => {
   beforeEach(() => {
-    usersRepository = new InMemoiryUseraRepository();
+    usersRepository = new InMemoryUserRepository();
     sut = new AuthenticateService(usersRepository);
   });
 
@@ -40,7 +40,7 @@ describe("Authenticate Service", () => {
   });
 
   it("should not be able to authenticate with wrong password", async () => {
-    const usersRepository = new InMemoiryUseraRepository();
+    const usersRepository = new InMemoryUserRepository();
     const authenticateService = new AuthenticateService(usersRepository);
 
     await usersRepository.create({
