@@ -9,19 +9,19 @@ let gymsRepository: InMemoryGymsRepository;
 let sut: CheckInService;
 
 describe("Check-in Service", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository();
     gymsRepository = new InMemoryGymsRepository();
     sut = new CheckInService(checkInsRepository, gymsRepository);
     vi.useFakeTimers();
 
-    gymsRepository.items.push({
+    await gymsRepository.create({
       id: "gym-01",
       title: "Academia da Ana",
       description: "",
       phone: "",
-      latitude: new Decimal(-23.2925701),
-      longitude: new Decimal(-45.9431597),
+      latitude: -23.2925701,
+      longitude: -45.9431597,
     });
   });
 
