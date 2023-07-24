@@ -38,10 +38,11 @@ describe("Nearby Gyms (e2e)", () => {
       });
 
     const response = await request(app.server)
-      .get("/gyms/search")
+      .get("/gyms/nearby")
       .set("Authorization", `Bearer ${token}`)
       .query({
-        query: "Ana",
+        latitude: -23.2925701,
+        longitude: -45.94315,
       })
       .send();
 
